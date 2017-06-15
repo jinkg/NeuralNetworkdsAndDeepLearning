@@ -1,5 +1,5 @@
 import tensorflow as tf
-from math import sqrt as sqrt
+from math import sqrt
 
 # No.1. Solve for the circle that contains the following three points: P(2,1), Q(0,5), R(-1,2)
 A = tf.constant([
