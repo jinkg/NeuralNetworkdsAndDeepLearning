@@ -8,22 +8,22 @@ def find(known_face_encodings, face_encoding_to_check, tolerance=0.6):
 
 
 # Load the jpg files into numpy arrays
-biden_image = face_recognition.load_image_file("biden.jpg")
-obama_image = face_recognition.load_image_file("obama.jpg")
-shasha_image = face_recognition.load_image_file("shasha5.jpg")
-yalin_image = face_recognition.load_image_file("yalin4.png")
+biden_image = face_recognition.load_image_file("img/biden.jpg")
+obama_image = face_recognition.load_image_file("img/obama.jpg")
+shasha_image = face_recognition.load_image_file("img/shasha5.jpg")
+yalin_image = face_recognition.load_image_file("img/yalin4.png")
 
-unknown_images = [face_recognition.load_image_file("obama2.jpg"),
-                  face_recognition.load_image_file("shasha2.jpg"),
-                  face_recognition.load_image_file("shasha3.jpg"),
-                  face_recognition.load_image_file("shasha4.jpg"),
-                  face_recognition.load_image_file("shasha5.jpg"),
-                  face_recognition.load_image_file("yalin1.jpg"),
-                  face_recognition.load_image_file("yalin2.jpg"),
-                  face_recognition.load_image_file("yalin3.jpg"),
-                  face_recognition.load_image_file("unknown1.png")]
+unknown_images = [face_recognition.load_image_file("img/obama2.jpg"),
+                  face_recognition.load_image_file("img/shasha2.jpg"),
+                  face_recognition.load_image_file("img/shasha3.jpg"),
+                  face_recognition.load_image_file("img/shasha4.jpg"),
+                  face_recognition.load_image_file("img/shasha5.jpg"),
+                  face_recognition.load_image_file("img/yalin1.jpg"),
+                  face_recognition.load_image_file("img/yalin2.jpg"),
+                  face_recognition.load_image_file("img/yalin3.jpg"),
+                  face_recognition.load_image_file("img/unknown1.png")]
 
-# unknown_image = face_recognition.load_image_file("yalinshasha1.jpg")
+# unknown_image = face_recognition.load_image_file("img/yalinshasha1.jpg")
 
 # Get the face encodings for each face in each image file
 # Since there could be more than one face in each image, it returns a list of encordings.
