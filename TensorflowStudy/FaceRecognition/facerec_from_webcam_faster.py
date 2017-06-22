@@ -39,7 +39,7 @@ while True:
         face_names = []
         for face_encoding in face_encodings:
             # See if the face is a match for the known face(s)
-            match = face_recognition.compare_faces([yalin_face_encoding], face_encoding)
+            match = face_recognition.compare_faces([yalin_face_encoding], face_encoding, tolerance=0.4)
             name = "Unknown"
 
             if match[0]:
