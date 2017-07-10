@@ -3,6 +3,8 @@ import operator
 import matplotlib
 import matplotlib.pyplot as plt
 
+from os import listdir
+
 
 def create_dataset():
     group = array([[1.0, 1.1], [1.0, 1.0], [0, 0], [0, 0.1]])
@@ -80,23 +82,73 @@ def classifyPerson():
     print("You will probably like this person: ", resultList[classifierResult - 1])
 
 
-group, labels = create_dataset()
-print(classify([3, 0], group, labels, 3))
+def img2vector(filename):
+    returnVect = zeros((1, 1024))
+    fr = open(filename)
+    for i in range(32):
+        lineStr = fr.readline()
+        for j in range(32):
+            returnVect[0, 32 * i + j] = int(lineStr[j])
 
-datingDataMat, datingLabels = file2matrix('datingTestSet2.txt')
-print(datingDataMat)
-print(datingLabels)
+    return returnVect
 
-fig = plt.figure()
-ax = fig.add_subplot(111)
-ax.scatter(datingDataMat[:, 0], datingDataMat[:, 1], 15.0 * array(datingLabels), 15.0 * array(datingLabels))
-plt.show()
 
-normMat, ranges, minVals = autoNorm(datingDataMat)
-print(normMat)
-print(ranges)
-print(minVals)
+def handwritingClassTest():
+    hwLabels = []
+    trainingFileList = listdir('trainingDigits')
+    m = len(trainingFileList)
+    hwDataSet = zeros((m, 1024))
+    for i in range(m):
+        filename = trainingFileList[i]
+        label = int(filename.split('_')[0])
+        hwLabels.append(label)
+        hwDataSet[i, :] = img2vector('trainingDigits/%s' % filename)
 
-datingClassTest()
+    accuracy = 0.
+    testFileList = listdir('testDigits')
+    mTest = len(testFileList)
+    for testFile in testFileList:
+        testLabel = int(testFile.split('_')[0])
+        testVector = img2vector('testDigits/%s' % testFile)
+        pred = classify(testVector, hwDataSet, hwLabels, 3)
+        print("Pred:", pred, "testLabel", testLabel)
+        if pred == testLabel:
+            accuracy += 1.
 
-classifyPerson()
+    accuracy /= mTest
+    print("Accuracy:", accuracy)
+
+
+# demo 1
+# group, labels = create_dataset()
+# print(classify([3, 0], group, labels, 3))
+
+# demo 2
+# datingDataMat, datingLabels = file2matrix('datingTestSet2.txt')
+# print(datingDataMat)
+# print(datingLabels)
+
+# demo 3
+# fig = plt.figure()
+# ax = fig.add_subplot(111)
+# ax.scatter(datingDataMat[:, 0], datingDataMat[:, 1], 15.0 * array(datingLabels), 15.0 * array(datingLabels))
+# plt.show()
+
+# demo 4
+# normMat, ranges, minVals = autoNorm(datingDataMat)
+# print(normMat)
+# print(ranges)
+# print(minVals)
+
+# demo 5
+# datingClassTest()
+
+# demo 6
+# classifyPerson()
+
+# demo 7
+# testVector = img2vector('testDigits/0_13.txt')
+# print(testVector[0, 0:31])
+
+# demo 8
+handwritingClassTest()
