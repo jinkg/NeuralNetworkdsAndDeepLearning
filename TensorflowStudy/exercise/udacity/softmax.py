@@ -1,4 +1,5 @@
 import numpy as np
+from sklearn.linear_model import LogisticRegression
 
 # np.exp(x) / np.sum(np.exp(x), axis=0)
 x = np.array([3.0, 1.0, 0.2])

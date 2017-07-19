@@ -12,8 +12,10 @@ b1 = tf.Variable(tf.zeros([64]))
 W2 = tf.Variable(tf.zeros([64, 10]))
 b2 = tf.Variable(tf.zeros([10]))
 
-layer1 = tf.matmul(x, W1) + b1
-y_ = tf.matmul(layer1, W2) + b2
+layer1 = tf.add(tf.matmul(x, W1), b1)
+layer1 = tf.nn.relu(layer1)
+
+y_ = tf.add(tf.matmul(layer1, W2), b2)
 
 cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels=y, logits=y_))
 
