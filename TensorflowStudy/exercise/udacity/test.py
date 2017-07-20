@@ -1,4 +1,5 @@
 import numpy as np
+import tensorflow as tf
 
 a = np.array([5, 6, 7])
 print(a.shape)
@@ -26,5 +27,4 @@ print(np.arange(10))
 print(d[:, None])
 print(np.arange(10) == d[:, None])
 
-e ={'a':1,
-    }
+tf.train.exponential_decay
