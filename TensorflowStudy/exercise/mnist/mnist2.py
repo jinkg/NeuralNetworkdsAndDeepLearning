@@ -31,8 +31,8 @@ init = tf.global_variables_initializer()
 with tf.Session() as sess:
     sess.run(init)
 
-    for step in range(10000):
-        batch = mnist.train.next_batch(100)
+    for step in range(30000):
+        batch = mnist.train.next_batch(128)
         _, loss = sess.run([train_step, cost], feed_dict={x: batch[0], y: batch[1]})
         if step % 500 == 0:
             print('loss is %f', loss)
